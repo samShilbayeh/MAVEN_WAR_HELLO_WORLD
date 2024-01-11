@@ -10,7 +10,7 @@ public class TomcatController {
 
     @GetMapping(value = "/hello")
     public Collection<String> sayHello() {
-        return IntStream.range(0, 10)
+        return IntStream.range(0, 15)
                 .mapToObj(i -> "Hello number " + i)
                 .collect(Collectors.toList());
     }
