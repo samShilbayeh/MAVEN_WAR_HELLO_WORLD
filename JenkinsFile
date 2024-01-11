@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages {
+        stage('PRINT_JAVA_VERSION_SCM') {
+            steps {
+                bat 'java -version'
+            }
+        }
+    }
+}
