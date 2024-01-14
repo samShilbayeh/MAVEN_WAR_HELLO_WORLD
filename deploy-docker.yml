@@ -1,0 +1,18 @@
+---
+- hosts: linuxclient1
+  become: True
+  become_user: root
+  tasks:
+    - name: Install yum-utils (use the yum module)
+
+    - name: Download Docker repository file using the get_url
+
+    - name: Install Docker packages (engine) using yum module, reference https://docs.docker.com/engine/install/centos/#installation-methods
+
+    - name: Start Docker service using the systemd module
+        
+    - name: log into docker hub registry using the docker_login module
+
+    - name: Pull image and create the container using docker_container
+    
+    - name: Start the container using docker_container

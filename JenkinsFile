@@ -1,10 +1,39 @@
-pipeline {
+pipeline{
     agent any
-    stages {
-        stage('PRINT_JAVA_VERSION_SCM') {
-            steps {
-                bat 'java -version'
+    tools {
+      maven 'MVN_HOME'
+    }
+
+    stages{
+       stage('Maven Build') {
+         steps {
+           echo 'Here you should trigger a maven build of your application using either bat(windows) or sh(linux)'
+         }
+       }
+       
+      stage('Docker Build'){
+            steps{
+                echo 'In this step you should build your docker image using the docker build command'
+                echo 'So you need to build an image from the WAR that you generated previously'
+                echo 'Remember that starting point of your image should be tomcat in order to serve the application on the web'
             }
         }
+        
+      stage('DockerHub Push'){
+            steps{
+                echo 'You should first login to your github account using the withCredentials synatx'
+                echo 'And for that you need to create the appropriate credentials to access the github account in Jenkins'
+                echo 'Then you need to push this image to the public registry dockerhub into your account'
+                echo 'Use the docker push command'
+            }
+        }
+  
+      stage('Docker Deploy'){
+            steps{
+                echo 'You should use the ansiblePlaybook syntax in order to call your playbook'
+                echo 'But before that you need to create an agent in order to execute the playbook on the Ansible controle node machine'
+            }
+        }        
     }
+    
 }
