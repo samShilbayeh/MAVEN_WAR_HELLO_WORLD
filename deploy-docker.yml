@@ -4,15 +4,70 @@
   become_user: root
   tasks:
     - name: Install yum-utils (use the yum module)
+      yum:
+        name: yum-utils
+        state: present
 
     - name: Download Docker repository file using the get_url
+      shell: sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 
     - name: Install Docker packages (engine) using yum module, reference https://docs.docker.com/engine/install/centos/#installation-methods
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
 
     - name: Start Docker service using the systemd module
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
         
-    - name: log into docker hub registry using the docker_login module
+    - name: Install Python
+      yum:
+        name:
+          - python
+        state: present      
 
+    - name: Download get-pip.py
+      get_url:
+        url: https://bootstrap.pypa.io/pip/2.7/get-pip.py
+        dest: /tmp/get-pip.py
+
+    - name: Install pip
+      command: python /tmp/get-pip.py
+
+    - name: Upgrade pip
+      command: pip install --upgrade pip
+
+    - name: Install docker-SDK
+      pip:
+        name: docker
+
+- name: Deploy Docker Container
+  hosts: 192.168.12.252
+  become: true
+
+  tasks:
     - name: Pull image and create the container using docker_container
+      docker_image:
+        name: shilbayeho/project:latest
+        source: pull
     
     - name: Start the container using docker_container
+      docker_container:
+        name: tomcat_devops
+        image: shilbayeho/project:latest
+        state: started
+        tty: true
+        auto_remove: true
+        ports:
+          - "8080:8080"
+          
+    - name: Log out of DockerHub
+      docker_login:
+        state: absent
