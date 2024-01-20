@@ -2,6 +2,7 @@ pipeline{
     agent any
     tools {
       maven 'MVN_HOME'
+      jdk 'JDK8'
     }
 
             environment {
@@ -24,7 +25,7 @@ pipeline{
                 echo 'Build shilbayeho/project'
                
                 sh "docker build -t shilbayeho/project ."
-                sh "sudo docker login -u shilbayeho -p Abcd@1234"
+                //sh "sudo docker login -u shilbayeho -p Abcd@1234"
             }
         }
         
