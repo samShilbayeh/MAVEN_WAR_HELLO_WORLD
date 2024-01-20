@@ -4,6 +4,10 @@ pipeline{
       maven 'MVN_HOME'
     }
 
+    environment {
+        // Credential defined in Jenkins
+        DOCKER_CREDENTIALS = credentials('docker-hub-pass')
+    }
     stages{
        stage('Maven Build') {
          steps {
@@ -27,6 +31,10 @@ pipeline{
                 echo 'And for that you need to create the appropriate credentials to access the github account in Jenkins'
                 echo 'Then you need to push this image to the public registry dockerhub into your account'
                 echo 'Use the docker push command'
+
+                sh "sudo docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW}"
+                sh "docker push -t shilbayeho/project:latest"
+                      
             }
         }
   
