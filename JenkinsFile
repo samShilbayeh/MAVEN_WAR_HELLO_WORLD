@@ -4,10 +4,10 @@ pipeline{
       maven 'MVN_HOME'
     }
 
-            environment {
+      //      environment {
             // Credential defined in Jenkins
-            DOCKER_CREDENTIALS = credentials('docker-hub-pass')
-    }
+    //        DOCKER_CREDENTIALS = credentials('docker-hub-pass')
+  //  }
     stages{
        stage('Maven Build') {
          steps {
