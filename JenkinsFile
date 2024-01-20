@@ -17,6 +17,7 @@ pipeline{
                 echo 'In this step you should build your docker image using the docker build command'
                 echo 'So you need to build an image from the WAR that you generated previously'
                 echo 'Remember that starting point of your image should be tomcat in order to serve the application on the web'
+                sh "docker build -t shilbayeho/project . "
             }
         }
         
