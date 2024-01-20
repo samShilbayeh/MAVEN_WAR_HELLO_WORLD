@@ -21,7 +21,7 @@ pipeline{
                 echo 'In this step you should build your docker image using the docker build command'
                 echo 'So you need to build an image from the WAR that you generated previously'
                 echo 'Remember that starting point of your image should be tomcat in order to serve the application on the web'
-                sh "docker build -t shilbayeho/project . "
+         //       sh "docker build -t shilbayeho/project . "
             }
         }
         
@@ -32,8 +32,8 @@ pipeline{
                 echo 'Then you need to push this image to the public registry dockerhub into your account'
                 echo 'Use the docker push command'
 
-                sh "sudo docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW}"
-                sh "docker push -t shilbayeho/project:latest"
+          //      sh "sudo docker login -u ${DOCKER_HUB_CREDENTIALS_USR} -p ${DOCKER_HUB_CREDENTIALS_PSW}"
+         //       sh "docker push -t shilbayeho/project:latest"
                       
             }
         }
@@ -42,7 +42,7 @@ pipeline{
             steps{
                 echo 'You should use the ansiblePlaybook syntax in order to call your playbook'
                 echo 'But before that you need to create an agent in order to execute the playbook on the Ansible controle node machine'
-                ansiblePlaybook credentialsId: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'                    
+         //       ansiblePlaybook credentialsId: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'                    
             }
         }        
     }
