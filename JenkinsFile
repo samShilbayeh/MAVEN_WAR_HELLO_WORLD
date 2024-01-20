@@ -22,7 +22,7 @@ pipeline{
                 echo 'So you need to build an image from the WAR that you generated previously'
                 echo 'Remember that starting point of your image should be tomcat in order to serve the application on the web'
                 echo 'Build shilbayeho/project'
-                sh "sudo docker login -u shilbayeho -p dckr_pat_DytFwjbBqe7AxfPKcxJ70dgiSBY"
+                sh "sudo docker login -u shilbayeho -p Abcd@1234"
                 sh "docker build -t shilbayeho/project ."
             }
         }
