@@ -22,6 +22,7 @@ pipeline{
                 echo 'So you need to build an image from the WAR that you generated previously'
                 echo 'Remember that starting point of your image should be tomcat in order to serve the application on the web'
                 echo 'Build shilbayeho/project'
+                sh "sudo docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}"
                 sh "docker build -t shilbayeho/project ."
             }
         }
@@ -33,7 +34,7 @@ pipeline{
                 echo 'Then you need to push this image to the public registry dockerhub into your account'
                 echo 'Use the docker push command'
 
-          //      sh "sudo docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}"
+                
          //       sh "docker push -t shilbayeho/project:latest"
                       
             }
