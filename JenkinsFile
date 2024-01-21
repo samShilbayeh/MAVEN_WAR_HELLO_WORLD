@@ -40,7 +40,7 @@ pipeline{
 
            sh "docker login -u shilbayeho -p dckr_pat_BeS5maG-WAeVjmCUsDa3i3vwaEg"
         //     sh "docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}"   
-               sh "docker push -t shilbayeho/project:latest"
+               sh "docker push shilbayeho/project:latest"
                       
             }
         }
