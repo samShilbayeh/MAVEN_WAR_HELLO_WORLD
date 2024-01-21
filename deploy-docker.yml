@@ -7,6 +7,9 @@
       yum:
         name: yum-utils
         state: present
+        
+    - name: Import Docker GPG Key - to fix issue with next step...
+      shell: rpm --import https://download.docker.com/linux/centos/gpg   
 
     - name: Download Docker repository file using the get_url
       shell: sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
