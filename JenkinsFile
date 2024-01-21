@@ -38,8 +38,8 @@ pipeline{
                 echo 'Then you need to push this image to the public registry dockerhub into your account'
                 echo 'Use the docker push command'
 
-           sh "docker login -u shilbayeho -p Chrysler2010"
-           //  sh "docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}"   
+          // sh "docker login -u shilbayeho -p Chrysler2010"
+             sh "docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}"   
                sh "docker push -t shilbayeho/project:latest"
                       
             }
