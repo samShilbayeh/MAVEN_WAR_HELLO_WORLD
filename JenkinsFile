@@ -17,24 +17,7 @@ pipeline{
            sh "mvn clean package"
          }
        }
-   stage('Docker Permissions') {
-            steps {
-                script {
-                    // Ensure Docker commands run with superuser privileges
-                    sh 'sudo docker run hello-world'
-
-                    // Add Jenkins user to the Docker group
-                    sh 'sudo usermod -aG docker $USER'
-
-                    // Check and set Docker socket permissions
-                    sh 'sudo chown root:docker /var/run/docker.sock'
-                    sh 'sudo chmod 660 /var/run/docker.sock'
-
-                    // Restart Docker service
-                    sh 'sudo service docker restart'
-                }
-            }
-        }
+  
  
       stage('Docker Build'){
             steps{
