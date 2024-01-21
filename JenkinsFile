@@ -4,7 +4,10 @@ pipeline{
       maven 'MVN_HOME'
       jdk 'JDK8'
     }
-
+   node {
+    stage('Print Jenkins Home') {
+        echo env.JENKINS_HOME
+    }
             environment {
             // Credential defined in Jenkins
             DOCKER_CREDENTIALS = credentials('docker')
