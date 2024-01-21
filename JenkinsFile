@@ -4,7 +4,21 @@ pipeline{
       maven 'MVN_HOME'
       jdk 'JDK8'
     }
-      stages {
+     
+ 
+            environment {
+            // Credential defined in Jenkins
+            DOCKER_CREDENTIALS = credentials('docker')
+    }
+    stages{
+       stage('Maven Build') {
+         steps {
+           echo 'Here you should trigger a maven build of your application using either bat(windows) or sh(linux)'
+           sh "mvn clean package"
+         }
+       }
+
+ stages {
         stage('Docker Permissions') {
             steps {
                 script {
@@ -23,19 +37,6 @@ pipeline{
                 }
             }
         }
- 
-            environment {
-            // Credential defined in Jenkins
-            DOCKER_CREDENTIALS = credentials('docker')
-    }
-    stages{
-       stage('Maven Build') {
-         steps {
-           echo 'Here you should trigger a maven build of your application using either bat(windows) or sh(linux)'
-           sh "mvn clean package"
-         }
-       }
-       
       stage('Docker Build'){
             steps{
                 echo 'In this step you should build your docker image using the docker build command'
@@ -70,5 +71,5 @@ pipeline{
             }
         }        
     }
-    
+   }// 
 }
