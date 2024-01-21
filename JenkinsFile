@@ -4,7 +4,10 @@ pipeline{
       maven 'MVN_HOME'
       jdk 'JDK8'
     }
-   
+
+  environment {
+        ANSIBLE_HOST_KEY_CHECKING = 'False'
+    }
     stages{
        stage('Maven Build') {
          steps {
@@ -14,9 +17,7 @@ pipeline{
        }
   
       
-	environment {
-        ANSIBLE_HOST_KEY_CHECKING = 'False'
-    }
+	
       stage('Docker Build'){
             steps{
                 echo 'In this step you should build your docker image using the docker build command'
