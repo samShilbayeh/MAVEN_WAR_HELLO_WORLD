@@ -40,7 +40,7 @@ pipeline{
 
            sh "sudo docker login -u shilbayeho -p Chrysler2010"
            //  sh "sudo docker login -u ${DOCKER_CREDENTIALS_USR} -p ${DOCKER_CREDENTIALS_PSW}"   
-         //       sh "docker push -t shilbayeho/project:latest"
+               sh "docker push -t shilbayeho/project:latest"
                       
             }
         }
@@ -49,7 +49,7 @@ pipeline{
             steps{
                 echo 'You should use the ansiblePlaybook syntax in order to call your playbook'
                 echo 'But before that you need to create an agent in order to execute the playbook on the Ansible controle node machine'
-         //       ansiblePlaybook credentialsId: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'                    
+                ansiblePlaybook credentialsId: 'ansible', inventory: 'dev.inv', playbook: 'deploy-docker.yml'                    
             }
         }        
     }
